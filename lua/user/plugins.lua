@@ -99,4 +99,8 @@ require("lazy").setup({
 
         opts_extend = { "sources.default" },
    },
+   -- LSP manager
+   { "williamboman/mason.nvim", config = true },
+   { "williamboman/mason-lspconfig.nvim", config = true },
+   { "neovim/nvim-lspconfig" },
 })
