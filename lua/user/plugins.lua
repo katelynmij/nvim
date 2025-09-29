@@ -16,7 +16,7 @@ require("lazy").setup({
         "rose-pine/neovim", --plugin repo
         name = "rose-pine", --optional alias
         config = function()
-            vim.cmd("colorscheme rose-pine-dawn")
+            vim.cmd("colorscheme rose-pine-moon")
         end,
     },
     {
@@ -103,4 +103,14 @@ require("lazy").setup({
    { "williamboman/mason.nvim", config = true },
    { "williamboman/mason-lspconfig.nvim", config = true },
    { "neovim/nvim-lspconfig" },
+
+   -- Autopairs plugin
+   {
+       "windwp/nvim-autopairs",
+       event = "InsertEnter",
+       config = function()
+           require("nvim-autopairs").setup({})
+       end,
+   },
 })
+
