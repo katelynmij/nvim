@@ -112,5 +112,54 @@ require("lazy").setup({
            require("nvim-autopairs").setup({})
        end,
    },
+   -- treesitter plugin
+   {
+       "nvim-treesitter/nvim-treesitter",
+       build = ":TSUpdate",
+       config = function()
+           local configs = require("nvim-treesitter.configs")
+           configs.setup({
+               ensure_installed = {
+                   "lua", "vim", "python", "javascript", "html", "css", "bash", "query"
+               },
+               sync_install = false,
+               highlight = {
+                   enable = true,
+                   additional_vim_regex_highlighting = false,
+               },
+               indent = {
+                   enable = true,
+                   disable = {},
+               },
+           })
+       end,
+   },
+   -- neotree
+   {
+        "nvim-neo-tree/neo-tree.nvim",
+        branch = "v3.x", 
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-tree/nvim-web-devicons",
+            "MunifTanjim/nui.nvim",
+        },
+        config = function()
+            require("neo-tree").setup({
+                --put custom config here
+                close_if_last_window = true,
+                enable_git_status = true,
+                enable_diagnostics = true,
+                filesystem = {
+                    follow_current_file = true,
+                    hijack_netrw_behavior = "open_default",
+                    filtered_items = {
+                        hide_dotfiles = false,
+                    },
+                },
+            })
+            -- keymap to toggle
+            vim.keymap.set("n", "<leader>e", ":Neotree toggle<CR>", { desc = "Toggle Neo-tree" })
+            end,
+   },
 })
 
